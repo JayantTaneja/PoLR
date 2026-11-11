@@ -1,0 +1,4 @@
+.env
+
+# local editor / Claude desktop app config (preview server for the browser pane)
+.claude/
