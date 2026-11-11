@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PoLR: The Path of Least Resistance (ICLR 2026)</title>
+  <meta name="description" content="Project page for PoLR (ICLR 2026): an inference-time method that clusters short prefixes of sampled reasoning traces and completes only the dominant cluster before majority voting.">
+  <link rel="canonical" href="https://jayanttaneja.github.io/PoLR/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="The Path of Least Resistance: Guiding LLM Reasoning Trajectories with Prefix Consensus">
+  <meta property="og:description" content="PoLR clusters short prefixes of sampled reasoning traces and completes only the dominant cluster before majority voting. ICLR 2026.">
+  <meta property="og:url" content="https://jayanttaneja.github.io/PoLR/">
+  <meta property="og:image" content="https://jayanttaneja.github.io/PoLR/assets/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PoLR: The Path of Least Resistance (ICLR 2026)">
+  <meta name="twitter:description" content="PoLR clusters short prefixes of sampled reasoning traces and completes only the dominant cluster before majority voting. ICLR 2026.">
+  <meta name="twitter:image" content="https://jayanttaneja.github.io/PoLR/assets/img/og-image.png">
+
+  <meta name="citation_title" content="The Path of Least Resistance: Guiding LLM Reasoning Trajectories with Prefix Consensus">
+  <meta name="citation_author" content="Jindal, Ishan">
+  <meta name="citation_author" content="Akuthota, Sai Prashanth">
+  <meta name="citation_author" content="Taneja, Jayant">
+  <meta name="citation_author" content="Sharma, Sachin Dev">
+  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_conference_title" content="International Conference on Learning Representations">
+  <meta name="citation_firstpage" content="54914">
+  <meta name="citation_lastpage" content="54934">
+  <meta name="citation_pdf_url" content="https://proceedings.iclr.cc/paper_files/paper/2026/file/5a0ce3abb720b740419e193c87afd080-Paper-Conference.pdf">
+  <meta name="citation_arxiv_id" content="2601.21494">
+
+  <link rel="icon" href="assets/img/favicon.ico" sizes="32x32">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Noto+Sans:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('polr-theme');
+        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
+  <script type="module" src="assets/js/main.js"></script>
+</head>
+<body>
+
+<a class="skip-link" href="#abstract">Skip to content</a>
+
+<nav class="navbar" aria-label="Site">
+  <a class="navbar-item" href="https://jayanttaneja.github.io/" title="Jayant Taneja's homepage">
+    <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.2 12 4l9 7.2" /><path d="M5.5 9.5V20h4.5v-5.5h4V20h4.5V9.5" /></svg>
+    <span class="sr-only">Homepage</span>
+  </a>
+  <details class="navbar-dropdown">
+    <summary class="navbar-item">More Research
+      <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+    </summary>
+    <div class="navbar-menu">
+      <a href="https://aclanthology.org/2025.findings-emnlp.393/">Offloaded Reasoning <span class="muted">(Findings of EMNLP 2025)</span></a>
+    </div>
+  </details>
+  <button class="navbar-item theme-toggle" type="button" aria-label="Toggle dark mode">
+    <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" /></svg>
+    <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" /></svg>
+  </button>
+</nav>
+
+<header class="hero">
+  <div class="container has-text-centered">
+    <p class="venue">ICLR 2026</p>
+    <h1 class="publication-title">The Path of Least Resistance: Guiding LLM Reasoning Trajectories with Prefix Consensus</h1>
+    <p class="publication-authors">
+      <span class="author-block">Ishan Jindal<sup>1,*</sup>,</span>
+      <span class="author-block">Sai Prashanth Akuthota<sup>2,†</sup>,</span>
+      <span class="author-block"><a href="https://jayanttaneja.github.io/">Jayant Taneja</a><sup>2,†</sup>,</span>
+      <span class="author-block">Sachin Dev Sharma<sup>2</sup></span>
+    </p>
+    <p class="publication-affiliations">
+      <span class="author-block"><sup>1</sup>Fujitsu Research India,</span>
+      <span class="author-block"><sup>2</sup>Samsung R&amp;D Institute India-Delhi</span>
+    </p>
+    <p class="publication-notes"><sup>*</sup>Work done while at SRID &nbsp;·&nbsp; <sup>†</sup>Equal contribution</p>
+
+    <div class="publication-links">
+      <a class="button" href="https://proceedings.iclr.cc/paper_files/paper/2026/hash/5a0ce3abb720b740419e193c87afd080-Abstract-Conference.html">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z" /><path d="M14 3v5h5M9 13h6M9 17h6" /></svg>
+        <span>Paper</span>
+      </a>
+      <a class="button" href="https://arxiv.org/abs/2601.21494">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4l14 16M19 4l-6.2 7.1M11.2 12.9 5 20" /></svg>
+        <span>arXiv</span>
+      </a>
+      <a class="button" href="https://openreview.net/forum?id=hrnSqERgPn">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v10H9l-5 4Z" /><path d="M8 9h8M8 12h5" /></svg>
+        <span>OpenReview</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<section class="hero teaser" aria-labelledby="teaser-title">
+  <div class="container">
+    <h2 id="teaser-title" class="sr-only">Overview</h2>
+    <div class="teaser-figure" id="teaser">
+      <div class="teaser-panel">
+        <p class="teaser-label"><strong>Self-Consistency</strong><span>Every sampled trace runs to completion, then the answers are majority-voted.</span></p>
+        <svg class="teaser-svg" data-teaser="sc" role="img" aria-label="Schematic: Self-Consistency generates every reasoning trace to its full length."></svg>
+        <div class="token-meter" aria-hidden="true"><span>Tokens generated</span><span class="meter-track"><i data-meter="sc"></i></span></div>
+      </div>
+      <div class="teaser-panel">
+        <p class="teaser-label"><strong>PoLR</strong><span>Short prefixes are clustered; only the dominant cluster is completed and voted on.</span></p>
+        <svg class="teaser-svg" data-teaser="polr" role="img" aria-label="Schematic: PoLR generates short prefixes for every trace, clusters them, and completes only the traces in the largest cluster."></svg>
+        <div class="token-meter" aria-hidden="true"><span>Tokens generated</span><span class="meter-track"><i data-meter="polr"></i></span></div>
+      </div>
+    </div>
+    <div class="teaser-footer">
+      <ol class="teaser-steps" aria-label="PoLR steps: select one to jump to it">
+        <li><button type="button" data-step="1">Sample prefixes</button></li>
+        <li><button type="button" data-step="2">Cluster</button></li>
+        <li><button type="button" data-step="3">Expand dominant cluster</button></li>
+        <li><button type="button" data-step="4">Vote</button></li>
+      </ol>
+      <button class="text-button" type="button" id="teaser-replay">
+        <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4h4" /></svg>
+        Replay
+      </button>
+    </div>
+    <p class="teaser-legend">
+      <span>Each bar is one sampled trace; its length is the tokens generated.</span>
+      <span><i class="key key-clusters" aria-hidden="true"></i>prefix clusters</span>
+      <span><i class="key key-ghost" aria-hidden="true"></i>tokens PoLR never generates</span>
+      <span class="muted">Schematic, not to scale.</span>
+    </p>
+    <p class="subtitle has-text-centered">
+      <span class="polr-name">PoLR</span> clusters short prefixes of sampled reasoning traces and completes only the
+      largest cluster before majority voting, instead of running every trace to the end as Self-Consistency does.
+    </p>
+  </div>
+</section>
+
+<section class="hero is-light is-small" aria-label="Highlights">
+  <div class="container">
+    <ul class="stat-row" id="stat-strip">
+      <li class="stat" data-dataset="gsm8k">
+        <span class="stat-name">GSM8K</span>
+        <span class="stat-value" data-stat="eta">40%</span>
+        <span class="stat-label">fewer tokens</span>
+        <span class="stat-delta"><span data-stat="delta">±0.0</span> pts accuracy</span>
+      </li>
+      <li class="stat" data-dataset="math500">
+        <span class="stat-name">MATH500</span>
+        <span class="stat-value" data-stat="eta">52%</span>
+        <span class="stat-label">fewer tokens</span>
+        <span class="stat-delta"><span data-stat="delta">−0.4</span> pts accuracy</span>
+      </li>
+      <li class="stat" data-dataset="aime24">
+        <span class="stat-name">AIME24</span>
+        <span class="stat-value" data-stat="eta">51%</span>
+        <span class="stat-label">fewer tokens</span>
+        <span class="stat-delta"><span data-stat="delta">±0.0</span> pts accuracy</span>
+      </li>
+      <li class="stat" data-dataset="aime25">
+        <span class="stat-name">AIME25</span>
+        <span class="stat-value" data-stat="eta">55%</span>
+        <span class="stat-label">fewer tokens</span>
+        <span class="stat-delta"><span data-stat="delta">±0.0</span> pts accuracy</span>
+      </li>
+      <li class="stat" data-dataset="gpqa">
+        <span class="stat-name">GPQA-Diamond</span>
+        <span class="stat-value" data-stat="eta">54%</span>
+        <span class="stat-label">fewer tokens</span>
+        <span class="stat-delta"><span data-stat="delta">−0.5</span> pts accuracy</span>
+      </li>
+    </ul>
+    <p class="stat-note">PoLR relative to Self-Consistency with 51 samples per question</p>
+  </div>
+</section>
+
+<main>
+
+<section class="section" id="abstract">
+  <div class="container">
+    <div class="column-narrow">
+      <h2 class="title is-3 has-text-centered">Abstract</h2>
+      <div class="content has-text-justified">
+        <p>Large language models achieve strong reasoning performance, but inference strategies such as Self-Consistency (SC) are computationally expensive, as they fully expand all reasoning traces. We introduce <b>PoLR</b> (<i>Path of Least Resistance</i>), the first inference-time method to leverage <i>prefix self-consistency</i> for compute-efficient reasoning. PoLR clusters short prefixes of reasoning traces, identifies the dominant cluster, and expands only a subset of promising paths, preserving the accuracy benefits of SC while substantially reducing token usage and latency. Our theoretical analysis, framed via mutual information and entropy, explains why early reasoning steps encode strong signals predictive of final correctness. Empirically, PoLR consistently matches or exceeds SC across GSM8K, Math500, AIME 2024/2025, and GPQA-Diamond, reducing token usage by up to 60% and wall-clock latency by up to 50%. Moreover, PoLR is fully complementary to adaptive inference methods (e.g., Adaptive Consistency, Early-Stopping SC) and can serve as a drop-in pre-filter, making SC substantially more efficient and scalable without requiring model fine-tuning.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="early">
+  <div class="container">
+    <div class="column-narrow">
+      <h2 class="title is-3">Do reasoning traces agree early?</h2>
+      <div class="content has-text-justified">
+        <p>Traces sampled for the same question often begin with the same words and diverge only once they commit to a set plan. In our preliminary study (DeepSeek-R1-Distill-Qwen-7B, 40 samples per question), 64% of MATH500 traces and 52% of GSM8K traces share an identical first 32 tokens, and a majority vote over just those traces gives the same accuracy as voting over all 40.</p>
+        <p>Below, the traces for one question grow token by token. Each band is a group of traces with an identical prefix so far. The band splits where the traces diverge.</p>
+      </div>
+    </div>
+    <div class="figure-block" id="prefix-tree" data-src="assets/data/traces/gsm8k-sprints__gpt-oss-20b.json"></div>
+    <div class="column-narrow">
+      <div class="content has-text-justified">
+        <p>Exact agreement across traces fades within a few dozen tokens, but the branches often keep describing the same plan in different words, for example: "We need to compute total meters per week. He runs 3 sprints 3 times a week" and "We need to solve: James runs 3 sprints 3 times a week" set up the same calculation. PoLR therefore compares prefixes by the words they share instead of requiring an exact match, so traces that phrase the same approach differently can still fall into one cluster.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="method">
+  <div class="container">
+    <div class="column-narrow">
+      <h2 class="title is-3">How PoLR works</h2>
+      <div class="content has-text-justified">
+        <p>Self-Consistency samples <var>N</var> reasoning traces, expands every one until completion, and majority-votes the answers. PoLR adds a step in between: it generates only the beginning prefix of each trace, groups these prefixes by similarity, and expands the traces in the largest group.</p>
+      </div>
+    </div>
+    <ol class="steps">
+      <li class="step">
+        <span class="step-num">1</span>
+        <h3>Sample prefixes</h3>
+        <p>Generate <var>N</var> short prefixes, capping each at <var>L<sub>p</sub></var> tokens (256 in our work).</p>
+      </li>
+      <li class="step">
+        <span class="step-num">2</span>
+        <h3>Cluster</h3>
+        <p>Embed the prefixes as TF-IDF vectors and group them with agglomerative clustering.</p>
+      </li>
+      <li class="step">
+        <span class="step-num">3</span>
+        <h3>Expand the dominant cluster</h3>
+        <p>Continue expanding only the prefixes in the largest cluster to full reasoning traces.</p>
+      </li>
+      <li class="step">
+        <span class="step-num">4</span>
+        <h3>Vote</h3>
+        <p>Majority-vote over the answers from the fully expanded traces</p>
+      </li>
+    </ol>
+
+    <div class="column-narrow">
+      <h3 class="title is-4">Try it</h3>
+      <div class="content has-text-justified">
+        <p>Each dot below is one prefix, placed on a 2-D down-projection of its TF-IDF features so that similar prefixes sit close together. Changing the prefix length changes which prefixes group together. Expanding the dominant cluster shows its vote next to Self-Consistency's.</p>
+      </div>
+    </div>
+    <div class="figure-block" id="playground" data-src="assets/data/traces/math500-intermediate_algebra-1544__gpt-oss-20b.json, assets/data/traces/aime25-2__gpt-oss-20b.json"></div>
+  </div>
+</section>
+
+<section class="section" id="results">
+  <div class="container">
+    <div class="column-narrow">
+      <h2 class="title is-3">Results</h2>
+    </div>
+    <div class="figure-block" id="results-chart"></div>
+  </div>
+</section>
+
+<section class="section" id="adaptive">
+  <div class="container">
+    <div class="column-narrow">
+      <h2 class="title is-3">Combining with adaptive methods</h2>
+      <div class="content has-text-justified">
+        <p>Adaptive Consistency (AC) and Early-Stopping SC (ESC) stop sampling once the finished answers agree, so these can only measure agreement after traces are complete. On the other hand, PoLR filters at the prefix stage, so the two can be combined: (1) PoLR selects the dominant cluster, (2) then AC or ESC decides how many of its traces to finish. Each bar below splits a question's 51 sampled traces into those fully expanded and those that each method avoided.</p>
+      </div>
+    </div>
+    <div class="figure-block" id="funnel"></div>
+  </div>
+</section>
+
+<section class="section" id="limits">
+  <div class="container">
+    <div class="column-narrow">
+      <h2 class="title is-3">Limitations</h2>
+      <div class="content has-text-justified">
+        <p>PoLR assumes that the largest prefix cluster contains strong enough reasoning. On problems where Self-Consistency itself narrowly agrees, strong consensus over the correct path may not materialize concretely enough for PoLR to leverage it. The largest accuracy drop in the paper is on AIME 2025 with QwQ-32B: 3 of 30 problems. In all three, SC's majority held only 53–63% of the votes, and the dominant cluster was less accurate than the smaller ones. On problems like these, PoLR is not expected to outperform SC.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="related">
+  <div class="container">
+    <div class="column-narrow">
+      <h2 class="title is-3">Related links</h2>
+      <div class="content has-text-justified">
+        <p><a href="https://arxiv.org/abs/2203.11171">Self-Consistency</a> introduced sampling many chains of thought and majority-voting their answers; it is the baseline PoLR builds on.</p>
+        <p><a href="https://arxiv.org/abs/2305.11860">Adaptive-Consistency</a> and <a href="https://arxiv.org/abs/2401.10480">Early-Stopping Self-Consistency</a> stop sampling once completed answers agree. PoLR acts earlier, on prefixes, and composes with both.</p>
+        <p><a href="https://arxiv.org/abs/2409.01281">Path-Consistency</a> uses the confidence of partial reasoning to guide later generation; PoLR needs no confidence estimator or guided decoding.</p>
+        <p><a href="https://arxiv.org/abs/2503.02875">UPFT</a> showed that the first few tokens of reasoning carry strong signal and used them for training. PoLR uses the same observation at inference time, without fine-tuning.</p>
+        <p><a href="https://aclanthology.org/2025.findings-emnlp.393/">Offloaded Reasoning</a> (Findings of EMNLP 2025), from some of the same authors, cuts inference cost by letting a small model write reasoning that a large model refines.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="bibtex">
+  <div class="container">
+    <div class="column-narrow">
+      <div class="bibtex-head">
+        <h2 class="title is-3">BibTeX</h2>
+        <button class="text-button" type="button" id="copy-bibtex">
+          <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" /><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" /></svg>
+          <span>Copy</span>
+        </button>
+      </div>
+      <pre><code id="bibtex-code">@inproceedings{ICLR2026_5a0ce3ab,
+  author    = {Jindal, Ishan and Akuthota, Sai Prashanth and Taneja, Jayant and Sharma, Sachin Dev},
+  booktitle = {International Conference on Learning Representations},
+  editor    = {C. Vondrick and B. Hariharan and C. Raffel and L. Pinto and D. Yang and A. Faust},
+  pages     = {54914--54934},
+  title     = {The Path of Least Resistance: Guiding {LLM} Reasoning Trajectories with Prefix Consensus},
+  url       = {https://proceedings.iclr.cc/paper_files/paper/2026/file/5a0ce3abb720b740419e193c87afd080-Paper-Conference.pdf},
+  volume    = {2026},
+  year      = {2026}
+}</code></pre>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-links">
+      <a href="https://proceedings.iclr.cc/paper_files/paper/2026/file/5a0ce3abb720b740419e193c87afd080-Paper-Conference.pdf" title="Paper PDF">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z" /><path d="M14 3v5h5" /></svg>
+        <span class="sr-only">Paper PDF</span>
+      </a>
+      <a href="https://jayanttaneja.github.io/" title="Jayant Taneja's homepage">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.2 12 4l9 7.2" /><path d="M5.5 9.5V20h4.5v-5.5h4V20h4.5V9.5" /></svg>
+        <span class="sr-only">Homepage</span>
+      </a>
+    </div>
+    <p>Page layout adapted from the <a href="https://nerfies.github.io/">Nerfies</a> project page.</p>
+    <p class="muted">Numbers in the charts are taken from tables in the paper.</p>
+  </div>
+</footer>
+
+<div class="viz-tooltip" id="viz-tooltip" role="status" hidden></div>
+</body>
+</html>

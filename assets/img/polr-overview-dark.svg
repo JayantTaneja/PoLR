@@ -1,0 +1,193 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 618" width="980" height="618" role="img" aria-label="Self-Consistency expands all N sampled reasoning traces before a majority vote; PoLR generates N short prefixes, embeds and clusters them, and expands only the K traces of the dominant cluster before voting.">
+<style>
+  text { font-family: Helvetica Neue, Helvetica, Arial, sans-serif; fill: #e6edf3; }
+  .serif { font-family: Times New Roman, Times, Liberation Serif, serif; }
+  .b { font-weight: 700; }
+  .i { font-style: italic; }
+  .on { fill: #111111; }
+  .lbl { fill: #2b7096; }
+  .lbltxt { fill: #ffffff; font-weight: 700; font-size: 17px; }
+  .box { fill: #161b22; stroke: #e6edf3; stroke-width: 1.3; }
+  .g { fill: #a9d18e; }
+  .r { fill: #f2857f; }
+  .arr { stroke: #6cb6d9; stroke-width: 1.6; fill: none; }
+  .ahead { fill: #6cb6d9; }
+  .thick { stroke: #e6edf3; stroke-width: 3.2; fill: none; }
+  .thead { fill: #e6edf3; }
+  .dash { stroke: #c9d1d9; stroke-width: 1.3; stroke-dasharray: 4 3; fill: none; }
+  .dots { stroke: #e6edf3; stroke-width: 1.3; stroke-dasharray: 3 3; fill: none; }
+  .sep { stroke: #8b949e; stroke-width: 2.4; stroke-dasharray: 11 8; fill: none; }
+  .pool { fill: #262c34; stroke: #30363d; stroke-width: 2; }
+  .pt { fill: none; stroke: #111111; stroke-width: 1.3; }
+  .ptxt { fill: #111111; font-family: Times New Roman, Times, Liberation Serif, serif; font-style: italic; font-size: 11px; }
+  .red { stroke: #ff6b5e; stroke-width: 1.7; fill: none; }
+  .rhead { fill: #ff6b5e; }
+</style>
+<defs>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ahead"/></marker>
+<marker id="th" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="thead"/></marker>
+<marker id="rh" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="rhead"/></marker>
+</defs>
+<rect x="20" y="20" width="322" height="228" rx="16" class="box"/>
+<text x="32" y="44.0" font-size="13" text-anchor="start"><tspan class="b">Q:</tspan> A robe takes 2 bolts of blue fiber and</text>
+<text x="32" y="62.4" font-size="13" text-anchor="start">half that much white fiber. How many bolts</text>
+<text x="32" y="80.8" font-size="13" text-anchor="start">in total does it take?</text>
+<text x="32" y="99.2" font-size="13" text-anchor="start"><tspan class="b">A:</tspan> It takes 2/2=&lt;&lt;2/2=1&gt;&gt;1 bolt of white</text>
+<text x="32" y="117.6" font-size="13" text-anchor="start">fiber So the total amount of fabric is</text>
+<text x="32" y="136.0" font-size="13" text-anchor="start">2+1=&lt;&lt;2+1=3&gt;&gt;3 bolts of fabric</text>
+<text x="32" y="154.4" font-size="13" text-anchor="start">....</text>
+<text x="32" y="172.8" font-size="13" text-anchor="start"><tspan class="b">Q:</tspan> James decides to run 3 sprints 3 times</text>
+<text x="32" y="191.2" font-size="13" text-anchor="start">a week. He runs 60 meters each sprint.</text>
+<text x="32" y="209.6" font-size="13" text-anchor="start">How many total meters does he run a week?</text>
+<text x="32" y="228.0" font-size="13" text-anchor="start"><tspan class="b">A:</tspan></text>
+<rect x="356" y="26" width="160" height="36" rx="3" class="lbl"/>
+<text x="436" y="50" class="lbltxt" font-size="14" text-anchor="middle" >Self-consistency</text>
+<line x1="342" y1="168" x2="370" y2="168" class="arr" marker-end="url(#ah)"/>
+<rect x="372" y="146" width="96" height="44" rx="8" class="g"/>
+<text x="420" y="174" class="serif on" font-size="16" text-anchor="middle">LLM (<tspan class="i">ℳ</tspan>)</text>
+<line x1="468" y1="168" x2="488" y2="168" class="thick" style="stroke-width:2.2"/>
+<line x1="488" y1="92" x2="488" y2="258" class="thick" style="stroke-width:2.2"/>
+<line x1="488" y1="92" x2="512" y2="92" class="arr" marker-end="url(#ah)"/>
+<rect x="514" y="80" width="248" height="24" rx="4" class="g"/>
+<line x1="762" y1="92" x2="794" y2="92" class="arr" marker-end="url(#ah)"/>
+<rect x="796" y="80" width="30" height="24" rx="4" class="g"/>
+<line x1="488" y1="128" x2="512" y2="128" class="arr" marker-end="url(#ah)"/>
+<rect x="514" y="116" width="248" height="24" rx="4" class="r"/>
+<line x1="762" y1="128" x2="794" y2="128" class="arr" marker-end="url(#ah)"/>
+<rect x="796" y="116" width="30" height="24" rx="4" class="r"/>
+<line x1="488" y1="164" x2="512" y2="164" class="arr" marker-end="url(#ah)"/>
+<rect x="514" y="152" width="248" height="24" rx="4" class="g"/>
+<line x1="762" y1="164" x2="794" y2="164" class="arr" marker-end="url(#ah)"/>
+<rect x="796" y="152" width="30" height="24" rx="4" class="g"/>
+<line x1="488" y1="222" x2="512" y2="222" class="arr" marker-end="url(#ah)"/>
+<rect x="514" y="210" width="248" height="24" rx="4" class="r"/>
+<line x1="762" y1="222" x2="794" y2="222" class="arr" marker-end="url(#ah)"/>
+<rect x="796" y="210" width="30" height="24" rx="4" class="r"/>
+<line x1="488" y1="258" x2="512" y2="258" class="arr" marker-end="url(#ah)"/>
+<rect x="514" y="246" width="248" height="24" rx="4" class="g"/>
+<line x1="762" y1="258" x2="794" y2="258" class="arr" marker-end="url(#ah)"/>
+<rect x="796" y="246" width="30" height="24" rx="4" class="g"/>
+<line x1="638" y1="182" x2="638" y2="206" class="dots"/>
+<rect x="788" y="72" width="46" height="206" class="dash"/>
+<text x="638" y="40" class="b" font-size="16" text-anchor="middle" >N Full Reasoning Traces with</text>
+<text x="638" y="60" class="b" font-size="16" text-anchor="middle" >Responses</text>
+<text x="892" y="40" class="b" font-size="16" text-anchor="middle" >Final answer</text>
+<text x="892" y="60" class="b" font-size="16" text-anchor="middle" >aggregation</text>
+<line x1="836" y1="168" x2="868" y2="168" class="thick" marker-end="url(#th)"/>
+<rect x="876" y="143" width="84" height="50" rx="6" class="g"/>
+<text x="918" y="212" class="b" font-size="13" text-anchor="middle" >Final</text>
+<text x="918" y="229" class="b" font-size="13" text-anchor="middle" >Response</text>
+<line x1="20" y1="300" x2="960" y2="300" class="sep"/>
+<polyline points="180,248 180,272 50,272 50,452" class="thick" style="stroke-width:1.8" marker-end="url(#th)"/>
+<rect x="118" y="318" width="150" height="36" rx="3" class="lbl"/>
+<text x="193" y="342" class="lbltxt" font-size="14" text-anchor="middle" >PoLR</text>
+<rect x="8" y="456" width="84" height="44" rx="8" class="g"/>
+<text x="50" y="484" class="serif on" font-size="16" text-anchor="middle">LLM (<tspan class="i">ℳ</tspan>)</text>
+<line x1="92" y1="478" x2="108" y2="478" class="thick" style="stroke-width:2.2"/>
+<line x1="108" y1="394" x2="108" y2="566" class="thick" style="stroke-width:2.2"/>
+<rect x="100" y="374" width="200" height="212" class="dash"/>
+<line x1="108" y1="394" x2="128" y2="394" class="thick" style="stroke-width:1.6" marker-end="url(#th)"/>
+<rect x="130" y="381" width="164" height="26" rx="6" class="box"/>
+<line x1="232" y1="381" x2="232" y2="407" class="box" style="fill:none"/>
+<text x="181" y="399" class="serif b" font-size="13" text-anchor="middle" >A  B  C  D</text>
+<text x="262" y="399" class="serif" font-size="17" text-anchor="middle"><tspan class="i">p</tspan><tspan dy="4" font-size="0.72em">1</tspan><tspan dy="-4"></tspan></text>
+<line x1="294" y1="394" x2="314" y2="394" class="arr" marker-end="url(#ah)"/>
+<line x1="108" y1="432" x2="128" y2="432" class="thick" style="stroke-width:1.6" marker-end="url(#th)"/>
+<rect x="130" y="419" width="164" height="26" rx="6" class="box"/>
+<line x1="232" y1="419" x2="232" y2="445" class="box" style="fill:none"/>
+<text x="181" y="437" class="serif b" font-size="13" text-anchor="middle" >A  C  E  D</text>
+<text x="262" y="437" class="serif" font-size="17" text-anchor="middle"><tspan class="i">p</tspan><tspan dy="4" font-size="0.72em">2</tspan><tspan dy="-4"></tspan></text>
+<line x1="294" y1="432" x2="314" y2="432" class="arr" marker-end="url(#ah)"/>
+<line x1="108" y1="470" x2="128" y2="470" class="thick" style="stroke-width:1.6" marker-end="url(#th)"/>
+<rect x="130" y="457" width="164" height="26" rx="6" class="box"/>
+<line x1="232" y1="457" x2="232" y2="483" class="box" style="fill:none"/>
+<text x="181" y="475" class="serif b" font-size="13" text-anchor="middle" >A  B  C  D</text>
+<text x="262" y="475" class="serif" font-size="17" text-anchor="middle"><tspan class="i">p</tspan><tspan dy="4" font-size="0.72em">3</tspan><tspan dy="-4"></tspan></text>
+<line x1="294" y1="470" x2="314" y2="470" class="arr" marker-end="url(#ah)"/>
+<line x1="108" y1="528" x2="128" y2="528" class="thick" style="stroke-width:1.6" marker-end="url(#th)"/>
+<rect x="130" y="515" width="164" height="26" rx="6" class="box"/>
+<line x1="232" y1="515" x2="232" y2="541" class="box" style="fill:none"/>
+<text x="181" y="533" class="serif b" font-size="13" text-anchor="middle" >A  B  F  D</text>
+<text x="262" y="533" class="serif" font-size="17" text-anchor="middle"><tspan class="i">p</tspan><tspan dy="4" font-size="0.72em"><tspan class="i">n</tspan>−1</tspan><tspan dy="-4"></tspan></text>
+<line x1="294" y1="528" x2="314" y2="528" class="arr" marker-end="url(#ah)"/>
+<line x1="108" y1="566" x2="128" y2="566" class="thick" style="stroke-width:1.6" marker-end="url(#th)"/>
+<rect x="130" y="553" width="164" height="26" rx="6" class="box"/>
+<line x1="232" y1="553" x2="232" y2="579" class="box" style="fill:none"/>
+<text x="181" y="571" class="serif b" font-size="13" text-anchor="middle" >A  B  C  D</text>
+<text x="262" y="571" class="serif" font-size="17" text-anchor="middle"><tspan class="i">p</tspan><tspan dy="4" font-size="0.72em"><tspan class="i">n</tspan></tspan><tspan dy="-4"></tspan></text>
+<line x1="294" y1="566" x2="314" y2="566" class="arr" marker-end="url(#ah)"/>
+<line x1="181" y1="488" x2="181" y2="510" class="dots"/>
+<text x="200" y="604" font-size="13" text-anchor="middle"><tspan class="serif i">N</tspan> prefix (<tspan class="serif"><tspan class="i">p</tspan><tspan dy="4" font-size="0.72em"><tspan class="i">i</tspan></tspan><tspan dy="-4"></tspan></tspan>) generations</text>
+<rect x="316" y="372" width="30" height="212" class="box"/>
+<text x="331" y="392" class="serif b" font-size="12" text-anchor="middle" >Pre</text>
+<text x="331" y="407" class="serif b" font-size="12" text-anchor="middle" >fix</text>
+<text x="331" y="436.0" class="serif b" font-size="13" text-anchor="middle" >E</text>
+<text x="331" y="454.5" class="serif b" font-size="13" text-anchor="middle" >M</text>
+<text x="331" y="473.0" class="serif b" font-size="13" text-anchor="middle" >B</text>
+<text x="331" y="491.5" class="serif b" font-size="13" text-anchor="middle" >E</text>
+<text x="331" y="510.0" class="serif b" font-size="13" text-anchor="middle" >D</text>
+<text x="331" y="528.5" class="serif b" font-size="13" text-anchor="middle" >D</text>
+<text x="331" y="547.0" class="serif b" font-size="13" text-anchor="middle" >E</text>
+<text x="331" y="565.5" class="serif b" font-size="13" text-anchor="middle" >R</text>
+<line x1="346" y1="394" x2="393" y2="394" class="arr" marker-end="url(#ah)"/>
+<line x1="346" y1="432" x2="368" y2="432" class="arr" marker-end="url(#ah)"/>
+<line x1="346" y1="470" x2="361" y2="470" class="arr" marker-end="url(#ah)"/>
+<line x1="346" y1="528" x2="378" y2="528" class="arr" marker-end="url(#ah)"/>
+<line x1="346" y1="566" x2="422" y2="566" class="arr" marker-end="url(#ah)"/>
+<circle cx="470" cy="470" r="106" class="pool"/>
+<ellipse cx="462" cy="430" rx="56" ry="41" transform="rotate(-15 462 430)" style="fill:#bfe3a9"/>
+<ellipse cx="479" cy="410" rx="29" ry="20" transform="rotate(-10 479 410)" style="fill:#f3b08f"/>
+<ellipse cx="470" cy="456" rx="26" ry="13" style="fill:#d29ae2"/>
+<ellipse cx="432" cy="532" rx="18" ry="29" transform="rotate(15 432 532)" style="fill:#ef9b78"/>
+<ellipse cx="522" cy="520" rx="47" ry="36" transform="rotate(-30 522 520)" style="fill:#f5bb2a"/>
+<ellipse cx="521" cy="507" rx="24" ry="17" transform="rotate(-20 521 507)" style="fill:#a9d9f2"/>
+<circle cx="429" cy="434" r="8" class="pt"/>
+<circle cx="484" cy="457" r="8" class="pt"/>
+<circle cx="436" cy="546" r="8" class="pt"/>
+<circle cx="532" cy="513" r="8" class="pt"/>
+<circle cx="500" cy="540" r="8" class="pt"/>
+<circle cx="467" cy="406" r="9.5" class="pt"/>
+<text x="467" y="409" text-anchor="middle" class="ptxt">p<tspan dy="2.5" font-size="0.75em">1</tspan></text>
+<circle cx="491" cy="414" r="9.5" class="pt"/>
+<text x="491" y="417" text-anchor="middle" class="ptxt">p<tspan dy="2.5" font-size="0.75em">3</tspan></text>
+<circle cx="457" cy="456" r="9.5" class="pt"/>
+<text x="457" y="459" text-anchor="middle" class="ptxt">p<tspan dy="2.5" font-size="0.75em">k</tspan></text>
+<circle cx="430" cy="519" r="9.5" class="pt"/>
+<text x="430" y="522" text-anchor="middle" class="ptxt">p<tspan dy="2.5" font-size="0.75em">2</tspan></text>
+<circle cx="512" cy="503" r="9.5" class="pt"/>
+<text x="512" y="506" text-anchor="middle" class="ptxt">p<tspan dy="2.5" font-size="0.75em">n</tspan></text>
+<text x="390" y="462" class="serif" font-size="17" text-anchor="middle"><tspan class="i">C</tspan><tspan dy="4" font-size="0.72em">1</tspan><tspan dy="-4"></tspan></text>
+<text x="458" y="570" class="serif" font-size="17" text-anchor="middle"><tspan class="i">C</tspan><tspan dy="4" font-size="0.72em">2</tspan><tspan dy="-4"></tspan></text>
+<text x="557" y="470" class="serif" font-size="17" text-anchor="middle"><tspan class="i">C</tspan><tspan dy="4" font-size="0.72em"><tspan class="i">j</tspan></tspan><tspan dy="-4"></tspan></text>
+<line x1="452" y1="465" x2="434" y2="508" class="red" marker-end="url(#rh)"/>
+<line x1="495" y1="423" x2="509" y2="492" class="red" marker-end="url(#rh)"/>
+<text x="470" y="600" class="serif" font-size="14" text-anchor="middle" >Agglomerative Clustering</text>
+<line x1="503" y1="396" x2="562" y2="352" class="arr" marker-end="url(#ah)"/>
+<rect x="566" y="314" width="96" height="40" rx="8" class="g"/>
+<text x="614" y="339" class="serif on" font-size="16" text-anchor="middle"><tspan class="i">ℳ</tspan>(<tspan class="i">x</tspan> | <tspan class="i">p</tspan><tspan dy="4" font-size="0.72em"><tspan class="i">k</tspan></tspan><tspan dy="-4"></tspan>)</text>
+<line x1="614" y1="354" x2="614" y2="546" class="arr"/>
+<rect x="670" y="418" width="126" height="146" class="dash"/>
+<line x1="614" y1="436" x2="678" y2="436" class="arr" marker-end="url(#ah)"/>
+<rect x="680" y="424" width="110" height="24" rx="4" class="g"/>
+<line x1="790" y1="436" x2="808" y2="436" class="arr" marker-end="url(#ah)"/>
+<rect x="810" y="424" width="30" height="24" rx="4" class="g"/>
+<line x1="614" y1="472" x2="678" y2="472" class="arr" marker-end="url(#ah)"/>
+<rect x="680" y="460" width="110" height="24" rx="4" class="r"/>
+<line x1="790" y1="472" x2="808" y2="472" class="arr" marker-end="url(#ah)"/>
+<rect x="810" y="460" width="30" height="24" rx="4" class="r"/>
+<line x1="614" y1="546" x2="678" y2="546" class="arr" marker-end="url(#ah)"/>
+<rect x="680" y="534" width="110" height="24" rx="4" class="g"/>
+<line x1="790" y1="546" x2="808" y2="546" class="arr" marker-end="url(#ah)"/>
+<rect x="810" y="534" width="30" height="24" rx="4" class="g"/>
+<line x1="735" y1="494" x2="735" y2="520" class="dots"/>
+<rect x="804" y="418" width="44" height="146" class="dash"/>
+<text x="735" y="362" class="b" font-size="16" text-anchor="middle" >Expanding</text>
+<text x="735" y="382" class="b" font-size="16" text-anchor="middle"><tspan class="serif i">K</tspan> ≪ <tspan class="serif i">N</tspan> reasoning</text>
+<text x="735" y="402" class="b" font-size="16" text-anchor="middle" >traces</text>
+<text x="892" y="380" class="b" font-size="16" text-anchor="middle" >Final answer</text>
+<text x="892" y="400" class="b" font-size="16" text-anchor="middle" >aggregation</text>
+<line x1="850" y1="490" x2="868" y2="490" class="thick" marker-end="url(#th)"/>
+<rect x="876" y="466" width="84" height="48" rx="6" class="g"/>
+<text x="918" y="533" class="b" font-size="13" text-anchor="middle" >Final</text>
+<text x="918" y="550" class="b" font-size="13" text-anchor="middle" >Response</text>
+</svg>

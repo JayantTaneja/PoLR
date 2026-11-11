@@ -1,0 +1,356 @@
+{
+ "dataset": "GSM8K",
+ "label": "GSM8K",
+ "model": "gpt-oss-20b",
+ "question": "James decides to run 3 sprints 3 times a week. He runs 60 meters each sprint. How many total meters does he run a week?",
+ "question_display": "James decides to run 3 sprints 3 times a week. He runs 60 meters each sprint. How many total meters does he run a week?",
+ "gold": "540",
+ "params": {
+  "N": 31,
+  "threshold": 1.0
+ },
+ "note": "Reasoning traces sampled from gpt-oss-20b (not a model evaluated in the paper). Each trace is the model's reasoning followed by its answer; prefix lengths are approximate.",
+ "samples": [
+  {
+   "prefix_by_Lp": {
+    "8": "We need to compute total",
+    "16": "We need to compute total meters per week. He runs",
+    "32": "We need to compute total meters per week. He runs 3 sprints 3 times a week. So 3 sprints per session,",
+    "64": "We need to compute total meters per week. He runs 3 sprints 3 times a week. So 3 sprints per session, 3 sessions per week. Each sprint 60 meters. So total sprints per week: 3*3 = 9 sprints. Each"
+   },
+   "answer": "540",
+   "correct": true,
+   "trace_tokens": 200
+  },
+  {
+   "prefix_by_Lp": {
+    "8": "We need to solve: James runs",
+    "16": "We need to solve: James runs 3 sprints 3 times a",
+    "32": "We need to solve: James runs 3 sprints 3 times a week. Each sprint is 60 meters. So total per sprint:",
+    "64": "We need to solve: James runs 3 sprints 3 times a week. Each sprint is 60 meters. So total per sprint: 60 meters. He does 3 sprints per session, 3 sessions per week. So total sprints per week: 3*3"
+   },
+   "answer": "540",
+   "correct": true,
+   "trace_tokens": 225
+  },
+  {
+   "prefix_by_Lp": {
+    "8": "We need to solve: James",
+    "16": "We need to solve: James runs 3 sprints 3 times",
+    "32": "We need to solve: James runs 3 sprints 3 times a week. Each sprint 60 meters. So each session:",
+    "64": "We need to solve: James runs 3 sprints 3 times a week. Each sprint 60 meters. So each session: 3 sprints * 60 = 180 meters. He does 3 times a week: 180 * 3 = 540 meters. So answer: 540"
+   },
+   "answer": "540",
+   "correct": true,
+   "trace_tokens": 174
+  },
+  {
+   "prefix_by_Lp": {
+    "8": "We need to parse: James decides",
+    "16": "We need to parse: James decides to run 3 sprints",
+    "32": "We need to parse: James decides to run 3 sprints 3 times a week. He runs 60 meters each sprint. How",
+    "64": "We need to parse: James decides to run 3 sprints 3 times a week. He runs 60 meters each sprint. How many total meters does he run a week? So each time he runs 3 sprints, each sprint 60m, so per session:"
+   },
+   "answer": "540",
+   "correct": true,
+   "trace_tokens": 196
+  },
+  {
+   "prefix_by_Lp": {
+    "8": "We need to compute total",
+    "16": "We need to compute total meters per week. He",
+    "32": "We need to compute total meters per week. He runs 3 sprints 3 times a week. So each sprint",
+    "64": "We need to compute total meters per week. He runs 3 sprints 3 times a week. So each sprint 60 meters. Each session: 3 sprints * 60 = 180 meters. He does 3 sessions per week: 180 *"
+   },
+   "answer": "540",
+   "correct": true,
+   "trace_tokens": 225
+  },
+  {
+   "prefix_by_Lp": {
+    "8": "We need to solve: James runs",
+    "16": "We need to solve: James runs 3 sprints 3 times a week.",
+    "32": "We need to solve: James runs 3 sprints 3 times a week. Each sprint 60 meters. So per session: 3 sprints",
+    "64": "We need to solve: James runs 3 sprints 3 times a week. Each sprint 60 meters. So per session: 3 sprints * 60 m = 180 m. 3 times a week: 180 m * 3 = 540 m. So answer: 540 meters. Provide step-by-step"
+   },
+   "answer": "540",
+   "correct": true,
+   "trace_tokens": 207
+  },
+  {
+   "prefix_by_Lp": {
+    "8": "We need to compute total meters",
+    "16": "We need to compute total meters per week. He runs 3",
+    "32": "We need to compute total meters per week. He runs 3 sprints 3 times a week. Each sprint 60 meters. So",
+    "64": "We need to compute total meters per week. He runs 3 sprints 3 times a week. Each sprint 60 meters. So per week: 3 sprints per session times 3 sessions = 9 sprints per week. Each sprint 60 meters => 9 *"
+   },
+   "answer": "540",
+   "correct": true,
+   "trace_tokens": 205
+  },
+  {
+   "prefix_by_Lp": {
+    "8": "We need to solve: James runs",
+    "16": "We need to solve: James runs 3 sprints 3 times a week.",
+    "32": "We need to solve: James runs 3 sprints 3 times a week. Each sprint 60 meters. So total sprints per week:",
+    "64": "We need to solve: James runs 3 sprints 3 times a week. Each sprint 60 meters. So total sprints per week: 3 sprints per session times 3 sessions = 9 sprints. Each sprint 60 m => total meters = 9 * 60 ="
+   },
+   "answer": "540",
+   "correct": true,
+   "trace_tokens": 200
+  },
+  {
+   "prefix_by_Lp": {
+    "8": "We need to parse the problem:",
+    "16": "We need to parse the problem: James runs 3 sprints",
+    "32": "We need to parse the problem: James runs 3 sprints 3 times a week. Each sprint is 60 meters. So total",
+    "64": "We need to parse the problem: James runs 3 sprints 3 times a week. Each sprint is 60 meters. So total sprints per week: 3 sprints per session times 3 sessions per week = 9 sprints. Each sprint 60 meters,"
+   },
+   "answer": "540",
+   "correct": true,
+   "trace_tokens": 198
+  },
+  {
+   "prefix_by_Lp": {
+    "8": "We need to solve: James",
+    "16": "We need to solve: James runs 3 sprints 3 times",
+    "32": "We need to solve: James runs 3 sprints 3 times a week. Each sprint 60 meters. So total sprints",
+    "64": "We need to solve: James runs 3 sprints 3 times a week. Each sprint 60 meters. So total sprints per week = 3 sprints * 3 times = 9 sprints. Each sprint 60 meters. Total meters = 9 * 60 = 540"
+   },
+   "answer": "540",
+   "correct": true,
+   "trace_tokens": 206
+  },
+  {
+   "prefix_by_Lp": {
+    "8": "We need to solve: James runs",
+    "16": "We need to solve: James runs 3 sprints 3 times a",
+    "32": "We need to solve: James runs 3 sprints 3 times a week. Each sprint 60 meters. So each session: 3",
+    "64": "We need to solve: James runs 3 sprints 3 times a week. Each sprint 60 meters. So each session: 3 sprints * 60 = 180 meters. He does 3 sessions per week: 3 * 180 = 540 meters. So answer: 540 meters."
+   },
+   "answer": "540",
+   "correct": true,
+   "trace_tokens": 196
+  },
+  {
+   "prefix_by_Lp": {
+    "8": "We need to parse the problem:",
+    "16": "We need to parse the problem: James runs 3 sprints 3",
+    "32": "We need to parse the problem: James runs 3 sprints 3 times a week. Each sprint is 60 meters. So total sprints",
+    "64": "We need to parse the problem: James runs 3 sprints 3 times a week. Each sprint is 60 meters. So total sprints per week = 3 sprints per session * 3 sessions per week = 9 sprints. Each sprint 60 m, so total meters"
+   },
+   "answer": "540",
+   "correct": true,
+   "trace_tokens": 234
+  },
+  {
+   "prefix_by_Lp": {
+    "8": "We need to solve: James runs",
+    "16": "We need to solve: James runs 3 sprints 3 times a",
+    "32": "We need to solve: James runs 3 sprints 3 times a week. Each sprint 60 meters. So total sprints per",
+    "64": "We need to solve: James runs 3 sprints 3 times a week. Each sprint 60 meters. So total sprints per week: 3 sprints per session * 3 sessions = 9 sprints. Each sprint 60 meters, so total meters = 9"
+   },
+   "answer": "540",
+   "correct": true,
+   "trace_tokens": 208
+  },
+  {
+   "prefix_by_Lp": {
+    "8": "We need to solve: James",
+    "16": "We need to solve: James runs 3 sprints 3 times",
+    "32": "We need to solve: James runs 3 sprints 3 times a week. Each sprint 60 meters. So per session:",
+    "64": "We need to solve: James runs 3 sprints 3 times a week. Each sprint 60 meters. So per session: 3 sprints * 60 = 180 meters. 3 times a week: 180 * 3 = 540 meters. Provide step-by-step"
+   },
+   "answer": "540",
+   "correct": true,
+   "trace_tokens": 188
+  },
+  {
+   "prefix_by_Lp": {
+    "8": "We need to solve: James",
+    "16": "We need to solve: James runs 3 sprints 3 times a",
+    "32": "We need to solve: James runs 3 sprints 3 times a week. Each sprint 60 meters. So each session:",
+    "64": "We need to solve: James runs 3 sprints 3 times a week. Each sprint 60 meters. So each session: 3 sprints * 60 = 180 meters. He does 3 sessions per week: 3 * 180 = 540 meters. So answer: 540"
+   },
+   "answer": "540",
+   "correct": true,
+   "trace_tokens": 195
+  },
+  {
+   "prefix_by_Lp": {
+    "8": "We need to compute total",
+    "16": "We need to compute total meters per week. He runs",
+    "32": "We need to compute total meters per week. He runs 3 sprints 3 times a week. Each sprint 60 meters. So",
+    "64": "We need to compute total meters per week. He runs 3 sprints 3 times a week. Each sprint 60 meters. So each session: 3 sprints * 60 m = 180 m. He does 3 times a week, so 180 m * 3 = 540 m. So answer:"
+   },
+   "answer": "540",
+   "correct": true,
+   "trace_tokens": 211
+  },
+  {
+   "prefix_by_Lp": {
+    "8": "We need to compute total",
+    "16": "We need to compute total meters per week. James runs",
+    "32": "We need to compute total meters per week. James runs 3 sprints 3 times a week, each sprint 60 meters.",
+    "64": "We need to compute total meters per week. James runs 3 sprints 3 times a week, each sprint 60 meters. So total sprints per week: 3 sprints * 3 times = 9 sprints. Each sprint 60 meters. So 9 * 60"
+   },
+   "answer": "540",
+   "correct": true,
+   "trace_tokens": 228
+  },
+  {
+   "prefix_by_Lp": {
+    "8": "We need to solve: James runs",
+    "16": "We need to solve: James runs 3 sprints 3 times a week.",
+    "32": "We need to solve: James runs 3 sprints 3 times a week. Each sprint 60 meters. So total sprints per week",
+    "64": "We need to solve: James runs 3 sprints 3 times a week. Each sprint 60 meters. So total sprints per week = 3 sprints per session * 3 sessions = 9 sprints. Each sprint 60 m. So total meters = 9 * 60 = 540"
+   },
+   "answer": "540",
+   "correct": true,
+   "trace_tokens": 209
+  },
+  {
+   "prefix_by_Lp": {
+    "8": "We need to solve: James runs",
+    "16": "We need to solve: James runs 3 sprints 3 times a week.",
+    "32": "We need to solve: James runs 3 sprints 3 times a week. Each sprint 60 meters. So each session: 3 sprints",
+    "64": "We need to solve: James runs 3 sprints 3 times a week. Each sprint 60 meters. So each session: 3 sprints * 60 = 180 meters. He does 3 sessions per week, so 180 * 3 = 540 meters. Provide step-by-step reasoning."
+   },
+   "answer": "540",
+   "correct": true,
+   "trace_tokens": 198
+  },
+  {
+   "prefix_by_Lp": {
+    "8": "We need to compute total",
+    "16": "We need to compute total meters per week. James runs",
+    "32": "We need to compute total meters per week. James runs 3 sprints per session? He runs 3 sprints 3 times",
+    "64": "We need to compute total meters per week. James runs 3 sprints per session? He runs 3 sprints 3 times a week. Each sprint 60 meters. So per session: 3 sprints * 60 = 180 meters. Per week: 3 sessions"
+   },
+   "answer": "540",
+   "correct": true,
+   "trace_tokens": 210
+  },
+  {
+   "prefix_by_Lp": {
+    "8": "We need to solve: James runs",
+    "16": "We need to solve: James runs 3 sprints 3 times a week.",
+    "32": "We need to solve: James runs 3 sprints 3 times a week. Each sprint 60 meters. So total sprints per week:",
+    "64": "We need to solve: James runs 3 sprints 3 times a week. Each sprint 60 meters. So total sprints per week: 3 sprints per session * 3 sessions per week = 9 sprints. Each sprint 60 meters. So total meters"
+   },
+   "answer": "540",
+   "correct": true,
+   "trace_tokens": 180
+  },
+  {
+   "prefix_by_Lp": {
+    "8": "We need to solve: James",
+    "16": "We need to solve: James runs 3 sprints per session,",
+    "32": "We need to solve: James runs 3 sprints per session, 3 times a week. Each sprint 60 meters.",
+    "64": "We need to solve: James runs 3 sprints per session, 3 times a week. Each sprint 60 meters. So per session: 3 sprints * 60 = 180 meters. Times 3 sessions = 540 meters. So answer: 540"
+   },
+   "answer": "540",
+   "correct": true,
+   "trace_tokens": 203
+  },
+  {
+   "prefix_by_Lp": {
+    "8": "We need to solve: James",
+    "16": "We need to solve: James runs 3 sprints 3 times",
+    "32": "We need to solve: James runs 3 sprints 3 times a week, each sprint 60 meters. So each session:",
+    "64": "We need to solve: James runs 3 sprints 3 times a week, each sprint 60 meters. So each session: 3 sprints * 60 = 180 meters. He does this 3 times a week: 180 * 3 = 540 meters. So answer:"
+   },
+   "answer": "540",
+   "correct": true,
+   "trace_tokens": 185
+  },
+  {
+   "prefix_by_Lp": {
+    "8": "We need to compute total",
+    "16": "We need to compute total meters per week. He runs",
+    "32": "We need to compute total meters per week. He runs 3 sprints 3 times a week. So 3 sprints per session,",
+    "64": "We need to compute total meters per week. He runs 3 sprints 3 times a week. So 3 sprints per session, 3 sessions per week. Each sprint 60 meters. So total sprints per week = 3 * 3 = 9 sprints. Each sprint"
+   },
+   "answer": "540",
+   "correct": true,
+   "trace_tokens": 221
+  },
+  {
+   "prefix_by_Lp": {
+    "8": "We need to solve: James",
+    "16": "We need to solve: James runs 3 sprints 3 times",
+    "32": "We need to solve: James runs 3 sprints 3 times a week. Each sprint is 60 meters. So each session:",
+    "64": "We need to solve: James runs 3 sprints 3 times a week. Each sprint is 60 meters. So each session: 3 sprints * 60 = 180 meters. 3 times a week: 180 * 3 = 540 meters. So answer: 540"
+   },
+   "answer": "540",
+   "correct": true,
+   "trace_tokens": 205
+  },
+  {
+   "prefix_by_Lp": {
+    "8": "We need to parse: James decides",
+    "16": "We need to parse: James decides to run 3 sprints 3",
+    "32": "We need to parse: James decides to run 3 sprints 3 times a week. He runs 60 meters each sprint. So each",
+    "64": "We need to parse: James decides to run 3 sprints 3 times a week. He runs 60 meters each sprint. So each sprint = 60 m. He does 3 sprints each time. He does this 3 times a week. So total sprints per week"
+   },
+   "answer": "540",
+   "correct": true,
+   "trace_tokens": 257
+  },
+  {
+   "prefix_by_Lp": {
+    "8": "We need to solve: James runs",
+    "16": "We need to solve: James runs 3 sprints 3 times a week.",
+    "32": "We need to solve: James runs 3 sprints 3 times a week. Each sprint is 60 meters. So each time he runs",
+    "64": "We need to solve: James runs 3 sprints 3 times a week. Each sprint is 60 meters. So each time he runs 3 sprints, total distance per session = 3 * 60 = 180 meters. He does 3 sessions per week, so weekly total"
+   },
+   "answer": "540",
+   "correct": true,
+   "trace_tokens": 214
+  },
+  {
+   "prefix_by_Lp": {
+    "8": "We need to solve: James runs",
+    "16": "We need to solve: James runs 3 sprints 3 times a week.",
+    "32": "We need to solve: James runs 3 sprints 3 times a week. Each sprint 60 meters. So total sprints per",
+    "64": "We need to solve: James runs 3 sprints 3 times a week. Each sprint 60 meters. So total sprints per week = 3 sprints per session * 3 sessions per week = 9 sprints per week. Each sprint 60 meters, so"
+   },
+   "answer": "540",
+   "correct": true,
+   "trace_tokens": 198
+  },
+  {
+   "prefix_by_Lp": {
+    "8": "We need to solve: James runs",
+    "16": "We need to solve: James runs 3 sprints 3 times a week,",
+    "32": "We need to solve: James runs 3 sprints 3 times a week, each sprint 60 meters. So total sprints per week:",
+    "64": "We need to solve: James runs 3 sprints 3 times a week, each sprint 60 meters. So total sprints per week: 3 sprints per session times 3 sessions per week = 9 sprints. Each sprint 60 meters, so total meters"
+   },
+   "answer": "540",
+   "correct": true,
+   "trace_tokens": 239
+  },
+  {
+   "prefix_by_Lp": {
+    "8": "We need to solve: James runs",
+    "16": "We need to solve: James runs 3 sprints 3 times a week.",
+    "32": "We need to solve: James runs 3 sprints 3 times a week. Each sprint 60 meters. So total sprints per week:",
+    "64": "We need to solve: James runs 3 sprints 3 times a week. Each sprint 60 meters. So total sprints per week: 3 sprints per session * 3 sessions per week = 9 sprints. Each sprint 60 meters. Total meters = 9"
+   },
+   "answer": "540",
+   "correct": true,
+   "trace_tokens": 211
+  },
+  {
+   "prefix_by_Lp": {
+    "8": "We need to solve: James runs",
+    "16": "We need to solve: James runs 3 sprints 3 times a week.",
+    "32": "We need to solve: James runs 3 sprints 3 times a week. Each sprint is 60 meters. So total sprints per",
+    "64": "We need to solve: James runs 3 sprints 3 times a week. Each sprint is 60 meters. So total sprints per week: 3 sprints per session * 3 sessions per week = 9 sprints. Each sprint 60 meters => total meters ="
+   },
+   "answer": "540",
+   "correct": true,
+   "trace_tokens": 185
+  }
+ ]
+}
