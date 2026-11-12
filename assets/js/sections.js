@@ -144,7 +144,7 @@ function funnel(el, A) {
   const chart = html('div', { class: 'chart', role: 'img' });
   el.append(controls,
     legend([
-      { label: 'Completed', color: PART.done, kind: 'block' },
+      { label: 'Completed (PExp)', color: PART.done, kind: 'block' },
       { label: 'Dropped by PoLR (outside the dominant cluster)', color: PART.PoLR, kind: 'block' },
       { label: 'Skipped by AC', color: PART.AC, kind: 'block' },
       { label: 'Skipped by ESC', color: PART.ESC, kind: 'block' },
@@ -199,7 +199,7 @@ function funnel(el, A) {
     const base = top + plotH + 2;
     xAxis(g, x, [0, 10, 20, 30, 40, 51], base, top - 2, String, { grid: true });
     svg('text', { class: 'axis-title', x: (x(0) + x(51)) / 2, y: H - 4, 'text-anchor': 'middle', text: 'Reasoning traces per question' }, g);
-    svg('text', { class: 'tick', x: width, y: 8, 'text-anchor': 'end', 'dominant-baseline': 'middle', text: 'Completed · accuracy' }, g);
+    svg('text', { class: 'tick', x: width, y: 8, 'text-anchor': 'end', 'dominant-baseline': 'middle', text: 'PExp · accuracy' }, g);
     bars = [];
     const p = val('PoLR')[2];
     const pm = (k, j) => `${val(k)[j].toFixed(2)} ± ${val(k)[j + 1].toFixed(2)}`;
@@ -220,7 +220,7 @@ function funnel(el, A) {
       hoverable(grp, () => ({
         title: `${row.label} · ${state.ds}, ${state.model}`,
         rows: [
-          { value: pm(row.key, 2), name: 'completed', color: PART.done },
+          { value: pm(row.key, 2), name: 'completed (PExp)', color: PART.done },
           row.polr && { value: (51 - p).toFixed(2), name: 'dropped by PoLR', color: PART.PoLR },
           row.stop && { value: ((row.polr ? p : 51) - r[2]).toFixed(2), name: `skipped by ${row.stop}`, color: PART[row.stop] },
           { value: `${pm(row.key, 0)}%`, name: 'accuracy' },

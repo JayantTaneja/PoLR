@@ -2,6 +2,7 @@ import { renderPaperSections } from './sections.js';
 import { initTeaser } from './teaser.js';
 import { initPrefixTree } from './prefixtree.js';
 import { initPlayground } from './playground.js';
+import { initPexp } from './pexp.js';
 import { html, segmented } from './charts.js';
 
 function initThemeToggle() {
@@ -69,13 +70,26 @@ async function mountTraces(el, init) {
   show(0);
 }
 
+// Display math: the LaTeX source sits in the element (.math-block) and KaTeX (loaded deferred from the CDN)
+// renders it in place. If KaTeX is unavailable the source stays visible as plain text.
+function renderMath() {
+  if (!window.katex) return;
+  for (const el of document.querySelectorAll('.math-block')) {
+    const tex = el.textContent;
+    el.setAttribute('aria-label', tex);
+    window.katex.render(tex, el, { displayMode: true, throwOnError: false });
+  }
+}
+
 async function init() {
+  renderMath();
   initThemeToggle();
   initBibtexCopy();
   closeMenusOnOutsideClick();
   initTeaser();
   mountTraces(document.getElementById('prefix-tree'), initPrefixTree);
   mountTraces(document.getElementById('playground'), initPlayground);
+  initPexp(document.getElementById('pexp-figure'));
   try { renderPaperSections(await getJSON('assets/data/paper-tables.json')); } catch (e) { console.error('Could not load paper tables', e); }
 }
 

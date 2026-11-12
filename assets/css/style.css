@@ -340,6 +340,17 @@ svg [tabindex]:focus-visible .focus-ring { stroke: var(--focus); stroke-width: 2
 
 /* ---------- prefix tree ---------- */
 .tree-toolbar { display: flex; align-items: center; gap: 0.9rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+#pexp-figure { max-width: 768px; margin-left: auto; margin-right: auto; }
+/* display math (KaTeX); scrolls sideways on narrow screens instead of overflowing the page */
+.math-block { margin: 1.25rem 0; overflow-x: auto; overflow-y: hidden; color: var(--text-strong); }
+/* a group of display formulas, one per line and centred, as in the paper; same layout at every width */
+.math-row { display: flex; flex-direction: column; align-items: center; margin: 0.75rem 0; padding: 0.3rem 0; overflow-x: auto; overflow-y: hidden; }
+.math-row .math-block { margin: 0.3rem 0; overflow: visible; }   /* KaTeX boxes overhang by ~2px; let the row scroll instead */
+.math-block .katex-display { margin: 0; }
+.math-block .katex { font-size: 1.12em; }
+.pexp-toolbar { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem; margin-bottom: 0.25rem; }
+.pexp-toolbar .legend { margin: 0; }
+.pexp-toolbar .text-button { flex: none; }
 .tree-toolbar input[type="range"] { flex: 1; min-width: 140px; max-width: 360px; accent-color: var(--s1); }
 .tree-toolbar output { font-size: 0.85rem; color: var(--text-muted); font-variant-numeric: tabular-nums; }
 .tree-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 4px; }

@@ -37,7 +37,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Noto+Sans:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
   <link rel="stylesheet" href="assets/css/style.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
   <script>
     (function () {
       try {
@@ -260,6 +262,38 @@
       <h2 class="title is-3">Results</h2>
     </div>
     <div class="figure-block" id="results-chart"></div>
+  </div>
+</section>
+
+<section class="section" id="pexp">
+  <div class="container">
+    <div class="column-narrow">
+      <h2 class="title is-3">Counting path expansions (PExp)</h2>
+      <div class="content has-text-justified">
+        <p>Most of Self-Consistency's cost comes from running every sampled trace to the end. PoLR, Adaptive Consistency and Early-Stopping SC all save compute the same way: they complete fewer of the sampled traces. Token counts show this only indirectly, because trace lengths vary across models and questions. We therefore introduce <strong>Path Expansion (PExp)</strong>: the number of sampled reasoning traces that are generated to completion and used in the final vote. Formally, for a question with <var>N</var> sampled traces:</p>
+      </div>
+      <div class="math-row">
+        <div class="math-block">\mathrm{PExp} = \sum_{i=1}^{N} \mathbf{1}\!\left[\,\text{trace } i \text{ completes}\,\right]</div>
+        <div class="math-block">1 \le \mathrm{PExp} \le N</div>
+        <div class="math-block">\mathrm{PEff} = 1 - \frac{\mathrm{PExp}}{N}</div>
+      </div>
+      <div class="content has-text-justified">
+        <p>For example, with <var>N</var> = 12 sampled traces:</p>
+      </div>
+    </div>
+    <div class="figure-block" id="pexp-figure"></div>
+    <div class="column-narrow">
+      <div class="content has-text-justified">
+        <p>PExp counts completions only. For PoLR, the token cost splits into two terms:</p>
+      </div>
+      <div class="math-row">
+        <div class="math-block">T_{\mathrm{PoLR}} = \underbrace{N L_p}_{\text{prefixes}} + \underbrace{\mathrm{PExp}\,(\ell_f - L_p)}_{\text{completions}}</div>
+        <div class="math-block">\eta = 1 - \frac{T_{\mathrm{PoLR}}}{N \ell_f}</div>
+      </div>
+      <div class="content has-text-justified">
+        <p>Here PExp is <var>K</var>, the size of the dominant cluster, and ℓ<sub><var>f</var></sub> is the average length of a full trace. The first term is the part PExp leaves out: every sampled trace still costs a prefix of <var>L</var><sub><var>p</var></sub> tokens, so we report PExp alongside token efficiency η.</p>
+      </div>
+    </div>
   </div>
 </section>
 
