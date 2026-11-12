@@ -163,6 +163,17 @@ button { font: inherit; }
 }
 .title.is-3 { font-size: 2rem; }
 .title.is-4 { font-size: 1.4rem; margin-top: 2.25rem; }
+
+/* copy-link anchor after section headings: hidden until the heading is hovered or the link is focused */
+.heading-link { display: inline-flex; align-items: center; margin-left: 0.5rem; font-size: 0.9rem; color: var(--text-muted);
+  text-decoration: none; opacity: 0; transition: opacity 0.15s ease, color 0.15s ease; vertical-align: middle; border-radius: 4px; }
+.title.is-4 .heading-link { font-size: 0.8rem; }
+.title.has-text-centered .heading-link { position: absolute; }   /* out of flow, so a centred heading stays centred */
+.title:hover .heading-link, .heading-link:focus-visible, .heading-link.is-copied { opacity: 0.6; }
+.title .heading-link:hover, .title .heading-link:focus-visible { opacity: 0.9; color: var(--text); text-decoration: none; }
+.heading-link .icon { width: 1em; height: 1em; vertical-align: 0; }
+@media (hover: none) { .heading-link { opacity: 0.3; } }   /* touch screens: no hover, so keep it faintly visible */
+section[id], .title[id] { scroll-margin-top: 1rem; }
 .content p { margin: 0 0 1rem; }
 .content p:last-child { margin-bottom: 0; }
 .caption { font-size: 0.875rem; color: var(--text-muted); margin: 0.6rem 0 0; }

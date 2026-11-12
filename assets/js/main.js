@@ -70,6 +70,37 @@ async function mountTraces(el, init) {
   show(0);
 }
 
+// Copy-link anchors: every section heading gets a small link icon (shown on hover or keyboard focus) that copies
+// the section's URL, e.g. https://jayanttaneja.github.io/PoLR/#pexp, and puts the anchor in the address bar.
+// Feedback is quiet: the icon turns into a check mark for a moment, and screen readers hear "Link copied".
+function initHeadingLinks() {
+  const LINK = '<path d="M10 13a5 5 0 0 0 7.1 0l3-3a5 5 0 0 0-7.1-7.1l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.1 0l-3 3a5 5 0 0 0 7.1 7.1l1.5-1.5"/>';
+  const CHECK = '<path d="M5 12.5l4.5 4.5L19 7.5"/>';
+  const status = html('div', { class: 'sr-only', role: 'status', 'aria-live': 'polite' });
+  document.body.append(status);
+  for (const h of document.querySelectorAll('section[id] h2.title, h3.title[id]')) {
+    const id = h.id || h.closest('section[id]').id;
+    const name = h.textContent.trim();
+    const a = html('a', { class: 'heading-link', href: `#${id}`, title: 'Copy link to this section', 'aria-label': `Copy link to section: ${name}` });
+    a.innerHTML = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">${LINK}</svg>`;
+    const icon = a.firstChild;
+    let timer = 0;
+    a.addEventListener('click', async (e) => {
+      e.preventDefault();
+      history.replaceState(null, '', `#${id}`);
+      let copied = false;
+      try { await navigator.clipboard.writeText(location.href); copied = true; } catch (err) { /* clipboard blocked: the link is still in the address bar */ }
+      status.textContent = copied ? 'Link copied' : 'Link is in the address bar';
+      if (!copied) return;
+      icon.innerHTML = CHECK;
+      a.classList.add('is-copied');
+      clearTimeout(timer);
+      timer = setTimeout(() => { icon.innerHTML = LINK; a.classList.remove('is-copied'); status.textContent = ''; }, 1500);
+    });
+    h.append(a);
+  }
+}
+
 // Display math: the LaTeX source sits in the element (.math-block) and KaTeX (loaded deferred from the CDN)
 // renders it in place. If KaTeX is unavailable the source stays visible as plain text.
 function renderMath() {
@@ -85,6 +116,7 @@ async function init() {
   renderMath();
   initThemeToggle();
   initBibtexCopy();
+  initHeadingLinks();
   closeMenusOnOutsideClick();
   initTeaser();
   mountTraces(document.getElementById('prefix-tree'), initPrefixTree);
